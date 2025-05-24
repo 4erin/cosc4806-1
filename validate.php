@@ -5,11 +5,17 @@
     $valid_password = "password";
 
     $username = $_REQUEST['username'];
-    $SESSION['username']= $usernmae
+    $_SESSION['username']= $username;
     $password = $_REQUEST['password'];
 
 if ($valid_username == $username && $valid_password == $password) {
-  header('Location/');
+    $_SESSION['authenticated'] = 1;
+  header('Location: /logout.php');
+
+    if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== 1) {
+    header('Location: /login.php');
+    exit()
+    
 } else{
     if (!isset($_SESSION['failed_attempts']))
     {
@@ -19,7 +25,10 @@ if ($valid_username == $username && $valid_password == $password) {
     {
         $_SESSION['failed_attempts'] = $_SESSION['failed_attempts'] + 1;
     }
+     header('Location: /login.php');
      echo "this is an unseccessful attempt number " , $_SESSION[ 'failed_attempts'];
+
+    
   }
       
 
