@@ -8,7 +8,7 @@
     $_SESSION['username']= $username;
     $password = $_REQUEST['password'];
 
-if ($valid_username == $username && $valid_password == $password) {
+if ($username == $valid_username && $password == $valid_password) {
     $_SESSION['authenticated'] = 1;
   header('Location: /logout.php');
 
